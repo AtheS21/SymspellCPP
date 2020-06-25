@@ -196,7 +196,7 @@ public:
 	/// <param name="countIndex">The column position of the frequency count.</param>
 	/// <param name="separatorChars">Separator characters between term(s) and count.</param>
 	/// <returns>True if file loaded, or false if file not found.</returns>
-	bool LoadBigramDictionary(xstring corpus, int termIndex, int countIndex, xchar separatorChars = DEFAULT_SEPARATOR_CHAR);
+	bool LoadBigramDictionary(string corpus, int termIndex, int countIndex, xchar separatorChars = DEFAULT_SEPARATOR_CHAR);
 
 	/// <summary>Load multiple dictionary entries from a file of word/frequency count pairs</summary>
 	/// <remarks>Merges with any dictionary data already loaded.</remarks>
@@ -214,7 +214,7 @@ public:
 	/// <param name="countIndex">The column position of the frequency count.</param>
 	/// <param name="separatorChars">Separator characters between term(s) and count.</param>
 	/// <returns>True if file loaded, or false if file not found.</returns>
-	bool LoadDictionary(xstring corpus, int termIndex, int countIndex, xchar separatorChars = DEFAULT_SEPARATOR_CHAR);
+	bool LoadDictionary(string corpus, int termIndex, int countIndex, xchar separatorChars = DEFAULT_SEPARATOR_CHAR);
 
 	/// <summary>Load multiple dictionary entries from a stream of word/frequency count pairs</summary>
 	/// <remarks>Merges with any dictionary data already loaded.</remarks>
@@ -229,7 +229,7 @@ public:
 	/// <remarks>Merges with any dictionary data already loaded.</remarks>
 	/// <param name="corpus">The path+filename of the file.</param>
 	/// <returns>True if file loaded, or false if file not found.</returns>
-	bool CreateDictionary(xstring corpus);
+	bool CreateDictionary(string corpus);
 
 	/// <summary>Load multiple dictionary words from a stream containing plain text.</summary>
 	/// <remarks>Merges with any dictionary data already loaded.</remarks>

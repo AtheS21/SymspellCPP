@@ -188,7 +188,7 @@ bool SymSpell::CreateDictionaryEntry(xstring key, int64_t count, SuggestionStage
 /// <param name="countIndex">The column position of the frequency count.</param>
 /// <param name="separatorChars">Separator characters between term(s) and count.</param>
 /// <returns>True if file loaded, or false if file not found.</returns>
-bool SymSpell::LoadBigramDictionary(xstring corpus, int termIndex, int countIndex, xchar separatorChars)
+bool SymSpell::LoadBigramDictionary(string corpus, int termIndex, int countIndex, xchar separatorChars)
 {
 	xifstream corpusStream;
 	corpusStream.open(corpus);
@@ -246,6 +246,8 @@ bool SymSpell::LoadBigramDictionary(xifstream& corpusStream, int termIndex, int 
 		if (count < bigramCountMin) bigramCountMin = count;
 	}
 
+	if (bigrams.empty())
+		return false;
 	return true;
 }
 
@@ -256,7 +258,7 @@ bool SymSpell::LoadBigramDictionary(xifstream& corpusStream, int termIndex, int 
 /// <param name="countIndex">The column position of the frequency count.</param>
 /// <param name="separatorChars">Separator characters between term(s) and count.</param>
 /// <returns>True if file loaded, or false if file not found.</returns>
-bool SymSpell::LoadDictionary(xstring corpus, int termIndex, int countIndex, xchar separatorChars)
+bool SymSpell::LoadDictionary(string corpus, int termIndex, int countIndex, xchar separatorChars)
 {
 	
 	xifstream corpusStream(corpus);
@@ -312,6 +314,8 @@ bool SymSpell::LoadDictionary(xifstream& corpusStream, int termIndex, int countI
 	if (this->deletes == NULL)
 		this->deletes = new Dictionary<int, vector<xstring>>(staging.DeleteCount());
 	CommitStaged(&staging);
+	if (this->EntryCount() == 0)
+		return false;
 	return true;
 }
 
@@ -319,7 +323,7 @@ bool SymSpell::LoadDictionary(xifstream& corpusStream, int termIndex, int countI
 /// <remarks>Merges with any dictionary data already loaded.</remarks>
 /// <param name="corpus">The path+filename of the file.</param>
 /// <returns>True if file loaded, or false if file not found.</returns>
-bool SymSpell::CreateDictionary(xstring corpus)
+bool SymSpell::CreateDictionary(string corpus)
 {
 	xifstream corpusStream;
 	corpusStream.open(corpus);
@@ -350,6 +354,8 @@ bool SymSpell::CreateDictionary(xifstream& corpusStream)
 	}
 	if (this->deletes == NULL) this->deletes = new Dictionary<int, vector<xstring>>(staging.DeleteCount());
 	CommitStaged(&staging);
+	if (this->EntryCount() == 0)
+		return false;
 	return true;
 }
 

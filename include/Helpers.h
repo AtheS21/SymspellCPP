@@ -935,9 +935,14 @@ public:
 
 	int CompareTo(SuggestItem other)
 	{
-		// order by distance ascending, then by frequency count descending
-		if (this->distance == other.distance) return Helpers::CompareTo(other.count, this->count);
-		return Helpers::CompareTo(this->distance, other.distance);
+		// order by distance ascending, then by frequency count descending, and then by alphabet descending
+		int disCom = Helpers::CompareTo(this->distance, other.distance);
+		if (disCom != 0)
+			return disCom;
+		int cntCom = Helpers::CompareTo(other.count, this->count);
+		if (cntCom != 0)
+			return cntCom;
+		return this->term.compare(other.term);
 	}
 
 	bool Equals(const SuggestItem obj)
