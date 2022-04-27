@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <fcntl.h>
-#include <io.h>
+// #include <io.h>
 
 #ifdef UNICODE_SUPPORT
 
@@ -22,7 +22,7 @@ void TestJapanese()
 	xcout << XL("Library loaded: ") << time << XL(" ms") << endl;
 
 	xcout << XL("-------Testing Japanese word segmentation-------") << endl;
-	vector<xstring> sentences = { XL("“n•Ó“c’†"), XL("ŒÂ—Ñ“c’†"), XL("“n“ç‘½’†") };
+	vector<xstring> sentences = { XL("ï¿½nï¿½Ó“cï¿½ï¿½"), XL("ï¿½Â—Ñ“cï¿½ï¿½"), XL("ï¿½nï¿½ç‘½ï¿½ï¿½") };
 	for (int i = 0; i < sentences.size(); i++)
 	{
 		Info results = symSpell.WordSegmentation(sentences[i]);
@@ -30,7 +30,7 @@ void TestJapanese()
 	}
 
 	xcout << XL("-------Testing Japanese word correction-------") << endl;
-	sentences = { XL("˜j“ç"), XL("“c’†") };
+	sentences = { XL("ï¿½jï¿½ï¿½"), XL("ï¿½cï¿½ï¿½") };
 	for (int i = 0; i < sentences.size(); i++)
 	{
 		vector<SuggestItem> results = symSpell.Lookup(sentences[i], Verbosity::Closest);
@@ -52,7 +52,8 @@ void TestEnglish()
 	const int prefixLength = 3;
 	SymSpell symSpell(initialCapacity, maxEditDistance, prefixLength);
 	int start = clock();
-	symSpell.LoadDictionary("data\\frequency_dictionary_en_82_765.txt", 0, 1, XL(' '));
+	string corpus_path = "../data/frequency_dictionary_en_82_765.txt";
+	symSpell.LoadDictionary(corpus_path, 0, 1, XL(' '));
 	int end = clock();
 	float time = (float)((end - start) / (CLOCKS_PER_SEC / 1000));
 	xcout << XL("Library loaded: ") << time << XL(" ms") << endl;
@@ -86,9 +87,10 @@ void TestEnglish()
 	}
 }
 
-void main()
+int main()
 {
 	TestEnglish();
+	return 0;
 }
 
 #endif

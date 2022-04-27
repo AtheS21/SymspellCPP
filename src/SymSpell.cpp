@@ -232,7 +232,7 @@ bool SymSpell::LoadBigramDictionary(xifstream& corpusStream, int termIndex, int 
 				
 			}catch(...) {
 				//maybe log something here
-				printf("Cannot convert %s to integer\n",lineParts[countIndex]);
+				printf("Cannot convert %s to integer\n", lineParts[countIndex].c_str());
 			}
 		}
 		else
@@ -627,7 +627,7 @@ vector<SuggestItem> SymSpell::Lookup(xstring input, Verbosity verbosity, int max
 		// \w Alphanumeric characters (including non-latin characters, umlaut characters and digits) plus "_" 
 		// \d Digits
 		// Compatible with non-latin characters, does not split words at apostrophes
-		xregex r(XL("['’\\w-\\[_\\]]+"));
+		xregex r(XL("['’\\w\\-\\[_\\]]+"));
 		xsmatch m;
 		vector<xstring> matches;
 			//for benchmarking only: with CreateDictionary("big.txt","") and the text corpus from http://norvig.com/big.txt  the Regex below provides the exact same number of dictionary items as Norvigs regex "[a-z]+" (which splits words at apostrophes & incompatible with non-latin characters)     
