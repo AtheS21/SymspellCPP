@@ -174,6 +174,8 @@ public:
 		, int prefixLength = DEFAULT_PREFIX_LENGTH, int countThreshold = DEFAULT_COUNT_THRESHOLD
 		, unsigned char compactLevel = DEFAULT_COMPACT_LEVEL);
 
+	~SymSpell();
+
 	/// <summary>Create/Update an entry in the dictionary.</summary>
 	/// <remarks>For every word there are deletes with an edit distance of 1..maxEditDistance created and added to the
 	/// dictionary. Every delete entry has a suggestions list, which points to the original term(s) it was created from.
