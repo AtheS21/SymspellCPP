@@ -65,6 +65,12 @@ SymSpell::SymSpell(int initialCapacity, int maxDictionaryEditDistance
 	this->words = Dictionary<xstring, int64_t>(initialCapacity);
 }
 
+SymSpell::~SymSpell() {
+	if (this->deletes != nullptr) {
+		delete this->deletes;
+	}
+}
+
 /// <summary>Create/Update an entry in the dictionary.</summary>
 /// <remarks>For every word there are deletes with an edit distance of 1..maxEditDistance created and added to the
 /// dictionary. Every delete entry has a suggestions list, which points to the original term(s) it was created from.
