@@ -485,7 +485,7 @@ vector<SuggestItem> SymSpell::Lookup(xstring input, Verbosity verbosity, int max
 			}
 
 			//read candidate entry from dictionary
-			if (deletes->count(GetstringHash(candidate)))
+			if (deletes != nullptr and deletes->count(GetstringHash(candidate)))
 			{
 				vector<xstring> dictSuggestions = deletes->at(GetstringHash(candidate));
 				//iterate through suggestions (to other correct dictionary items) of delete item and add them to suggestion list
