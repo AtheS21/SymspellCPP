@@ -123,7 +123,7 @@ enum Verbosity
 
 class SymSpell
 {
-private:
+protected:
 	int initialCapacity;
 	int maxDictionaryEditDistance;
 	int prefixLength; //prefix length  5..7
