@@ -444,7 +444,7 @@ public:
 	/// that accepts a maxDistance.</summary>
 	static int Distance(xstring string1, xstring string2, int len1, int len2, int start, int maxDistance, vector<int> char1Costs, vector<int> prevChar1Costs) {
 		int i, j;
-		//for (j = 0; j < maxDistance;) char1Costs[j] = ++j;
+		//for (j = 0; j < maxDistance;) char1Costs[j-1] = ++j;
 		for (j = 0; j < maxDistance; j++)
 			char1Costs[j] = j + 1;
 		for (; j < len2;) char1Costs[j++] = maxDistance + 1;
@@ -653,7 +653,7 @@ public:
 	/// <summary>Internal implementation of the core Levenshtein algorithm.</summary>
 	/// <remarks>https://github.com/softwx/SoftWx.Match</remarks>
 	static int Distance(xstring string1, xstring string2, int len1, int len2, int start, vector<int> &char1Costs) {
-		for (int j = 0; j < len2;) char1Costs[j] = ++j;
+		for (int j = 0; j < len2;) char1Costs[j-1] = ++j;
 		int currentCharCost = 0;
 		if (start == 0) {
 			for (int i = 0; i < len1; ++i) {
@@ -699,7 +699,7 @@ public:
 	static int Distance(xstring string1, xstring string2, int len1, int len2, int start, int maxDistance, vector<int> &char1Costs) {
 		//            if (maxDistance >= len2) return Distance(string1, string2, len1, len2, start, char1Costs);
 		int i, j;
-		for (j = 0; j < maxDistance;) char1Costs[j] = ++j;
+		for (j = 0; j < maxDistance;) char1Costs[j-1] = ++j;
 		for (; j < len2;) char1Costs[j++] = maxDistance + 1;
 		int lenDiff = len2 - len1;
 		int jStartOffset = maxDistance - lenDiff;
