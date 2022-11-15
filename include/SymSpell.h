@@ -43,7 +43,7 @@
 // The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 // https://opensource.org/licenses/MIT
 
-#define DEFAULT_SEPARATOR_CHAR XL('\t')
+#define DEFAULT_SEPARATOR_CHAR XL(' ')
 #define DEFAULT_MAX_EDIT_DISTANCE 2
 #define DEFAULT_PREFIX_LENGTH 7
 #define DEFAULT_COUNT_THRESHOLD 1
